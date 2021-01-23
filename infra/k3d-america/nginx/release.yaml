@@ -5,4 +5,6 @@ metadata:
 spec:
   values:
     service:
-      port: 8080
+      type: ClusterIP
+      ports:
+        http: 8080
