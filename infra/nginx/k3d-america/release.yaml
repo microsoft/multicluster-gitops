@@ -1,0 +1,8 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx
+spec:
+  values:
+    service:
+      port: 8080
