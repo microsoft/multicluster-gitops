@@ -1,0 +1,27 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: dev-flux-system
+  namespace: dev-flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: dev
+  secretRef:
+    name: dev-flux-system
+  url: ssh://git@github.com/kaizentm/multicluster-gitops
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: dev-flux-system
+  namespace: dev-flux-system
+spec:
+  interval: 10m0s
+  path: ./clusters/k3d-america
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: dev-flux-system
+  validation: client
