@@ -14,6 +14,8 @@ metadata:
     toolkit.fluxcd.io/tenant: kaizentm
   name: kaizentm
   namespace: dev-kaizentm
+imagePullSecrets:
+- name: acr-secret
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
