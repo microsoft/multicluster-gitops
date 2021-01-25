@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ../../../base/kaizentm/azure-vote
 patchesStrategicMerge:
-  - dev-team-patch.yaml
+  - sync-patch.yaml
