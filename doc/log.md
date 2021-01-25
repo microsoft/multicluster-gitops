@@ -11,7 +11,8 @@ flux bootstrap github \
     --owner=kaizentm \
     --repository=${GITHUB_REPO} \
     --branch=dev \
-    --path=clusters/k3d-america
+    --path=clusters/k3d-america \
+    --namespace=dev-flux-system
 
 ### Bootstrap a new tenant
 
