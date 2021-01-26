@@ -1,6 +1,8 @@
 # Multi-cluster and multi-tenant environment with Flux v2
 
-This repository contains a sample of GitOps setup that supports multi-cluster and multi-tenant environments with Flux v2. It targets to cover the following use-cases:
+This repository contains a sample of GitOps setup that supports multi-cluster and multi-tenant environments with Flux v2. It used https://github.com/fluxcd/flux2-multi-tenancy repository as a starting point for considerations.
+
+It targets to cover the following use-cases:
 
 **Use-cases**:
 
