@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+spec:
+  template:
+    spec:
+      containers:
+      - name: master
+        resources:
+          requests:
+            cpu: 200m
