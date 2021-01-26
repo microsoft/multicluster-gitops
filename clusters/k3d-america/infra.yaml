@@ -8,6 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: dev-flux-system
+    namespace: dev-flux-system
   path: ./infra/k3d-america
   prune: true
   validation: client
