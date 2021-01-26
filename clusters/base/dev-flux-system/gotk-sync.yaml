@@ -19,7 +19,7 @@ metadata:
   namespace: dev-flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/k3d-america
+  path: ./clusters/base
   prune: true
   sourceRef:
     kind: GitRepository
