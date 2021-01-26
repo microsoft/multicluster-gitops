@@ -7,8 +7,5 @@ spec:
   interval: 1m0s
   ref:
     branch: dev
-  secretRef:
-    name: flux-system
-    namespace: flux-system
-  url: ssh://git@github.com/kaizentm/multicluster-gitops
+  url: https://github.com/kaizentm/multicluster-gitops
 ---
