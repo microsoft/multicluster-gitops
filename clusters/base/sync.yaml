@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: dev-flux-system
+  namespace: dev-flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: dev
+  secretRef:
+    name: dev-flux-system
+  url: ssh://git@github.com/kaizentm/multicluster-gitops
+---

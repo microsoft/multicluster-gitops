@@ -7,8 +7,7 @@ spec:
   interval: 10m0s
   sourceRef:
     kind: GitRepository
-    name: flux-system
-    namespace: flux-system
+    name: dev-flux-system
   path: ./infra/k3d-america
   prune: true
   validation: client
