@@ -14,6 +14,24 @@ flux bootstrap github \
     --path=clusters/k3d-america \
     --namespace=dev-flux-system
 
+
+export GITHUB_TOKEN=<your-token>
+export GITHUB_OWNER=<kaizentm>
+export GITHUB_REPO=<repository-name>
+export BRANCH=<your-branch>
+export PATH_IN_YOUR_BRANCH=<path-in-your-branch>
+
+flux check --pre
+
+<!-- For each env -->
+flux bootstrap github \
+    --owner=${GITHUB_OWNER} \
+    --repository=${GITHUB_REPO} \
+    --branch=${BRANCH} \
+    --path=${PATH_IN_YOUR_BRANCH}
+
+
+
 ### Bootstrap a new tenant
 
 <!-- For each env -->
