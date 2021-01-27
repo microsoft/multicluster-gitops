@@ -1,8 +1,8 @@
 # Multi-cluster and multi-tenant environment with Flux v2
 
-This repository contains a sample of GitOps setup that supports multi-cluster and multi-tenant environments with Flux v2. It used https://github.com/fluxcd/flux2-multi-tenancy repository as a starting point for considerations.
+This repository contains a sample of GitOps setup that supports multi-cluster and multi-tenant environments with Flux v2. It used [Flux V2 Multi-Tenancy](https://github.com/fluxcd/flux2-multi-tenancy) repository as a starting point for considerations.
 
-It targets to cover the following use-cases:
+The repository targets to cover the following use-cases:
 
 **Use-cases**:
 
@@ -24,7 +24,7 @@ When the new new cluster is added to an environment (e.g. dev), the dev-flux-sys
 
 Flux Kustomizations "infrastructure" reconciles all infra resources that are specific for this environment. In this case Redis namespace with a corresponding deployment is created. We override specific for the k3d-america cluster deployment parameters in [infra/k3d-america/redis/redis.yamlinfra/k3d-america/redis/redis.yaml](https://github.com/kaizentm/multicluster-gitops/blob/dev/infra/k3d-america/redis/redis.yaml). 
 
-Flux Kustomizations "tenants" refers to the list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to a dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again since an application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
+Flux Kustomizations "tenants" refers to a list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to a dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again since an application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
 
 ### Add a cluster
 TBD
