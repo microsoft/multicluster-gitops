@@ -18,9 +18,32 @@ The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this on
 
 The Main branch contains resources outside of environments, things that are common and shared by all environments. It might be Flux binary components running in flux-system namespace, any common infrastructure microservices such as Nginx, for example. 
 
-When a new cluster is added to the setup it should be bootstrapped with Flux. The [flux bootstrap]() command points to [cluster/base/flux-system] folder in the Main branch and creates in the new cluster flux-system namespace, GitRepository source, Flux Kustomization, CRDs and all necessary Flux binary components. In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). See [add a cluster] procedure for the details.
+When a new cluster is added to the setup it should be bootstrapped with Flux. The [flux bootstrap](https://toolkit.fluxcd.io/cmd/flux_bootstrap/) command points to [cluster/base/flux-system] folder in the Main branch and creates in the new cluster flux-system namespace, GitRepository source, Flux Kustomization, CRDs and all necessary Flux binary components. In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). See [add a cluster](#add_a_cluster) procedure for the details.
 
-When the new new cluster is added to an environment (e.g. dev),  
+When the new new cluster is added to an environment (e.g. dev), the dev-flux-system namespace, GitRepository source, Flux Kustomizations "infrastructure" and "tenants" are created. See [add a cluster to an environment](#add_a_cluster_to_an_environment) procedure for the details.
 
-The core controlling components live in the "dev-flux-system" namespaces. It is named "dev-..." because it's dev environment. This namespace has been created while boostrapping the cluster with ...   
+Flux Kustomizations "infrastructure" reconciles all infra resources that are specific for this environment. In this case Redis namespace with a corresponding deployment is created. We override specific for the k3d-america cluster deployment parameters in [infra/k3d-america/redis/redis.yamlinfra/k3d-america/redis/redis.yaml](https://github.com/kaizentm/multicluster-gitops/blob/dev/infra/k3d-america/redis/redis.yaml). 
 
+Flux Kustomizations "tenants" refers to the list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to a dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again since an application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
+
+### Add a cluster
+TBD
+
+### Add a cluster to an environment
+TBD
+
+### Remove a cluster
+TBD
+
+### Add/Remove a tenant
+TBD
+
+### Add an environment
+TBD
+
+### Resources
+
+- [Multi-Tenancy Strategies](https://github.com/fluxcd/flux2/discussions/263)
+- [Flux V2 Multi-Tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
+- [Flux v2 Kustomize-Helm example](https://github.com/fluxcd/flux2-kustomize-helm-example)
+- [Multicluster environments discussion](https://github.com/fluxcd/flux2/discussions/766)
