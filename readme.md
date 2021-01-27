@@ -14,5 +14,13 @@ To better understand the solution provided in this repository, it would be helpf
 
 ![multi-cluster-tenant-layout.png](docs/images/multi-cluster-tenant-layout.png)
 
+The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this one) represents environments with branches. For example, Dev branch describes clusters, infrastructure resources, tenants with their applications, everything that Dev environment consists of. QA branch describes resources for the QA environment and so on. In order to make changes in an environment configurations one needs to create a PR o the corresponding branch. Different branches/environments normally have different reviewing/approving policies.
+
+The Main branch contains resources outside of environments, things that are common and shared by all environments. It might be Flux binary components running in flux-system namespace, any common infrastructure microservices such as Nginx, for example. 
+
+When a new cluster is added to the setup it should be bootstrapped with Flux. The [flux bootstrap]() command points to [cluster/base/flux-system] folder in the Main branch and creates in the new cluster flux-system namespace, GitRepository source, Flux Kustomization, CRDs and all necessary Flux binary components. In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). See [add a cluster] procedure for the details.
+
+When the new new cluster is added to an environment (e.g. dev),  
+
 The core controlling components live in the "dev-flux-system" namespaces. It is named "dev-..." because it's dev environment. This namespace has been created while boostrapping the cluster with ...   
 
