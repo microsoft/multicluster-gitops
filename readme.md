@@ -29,7 +29,33 @@ Flux Kustomizations "infrastructure" reconciles all infra resources that are spe
 Flux Kustomizations "tenants" refers to a list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to the dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again, since the application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
 
 ### Add a cluster
-TBD
+To add a cluster to a fleet perform the following:
+- Make sure kubectl context is configured to the new cluster
+  ```
+  kubectl config use-context YOUR_CONTEXT
+  ```
+- Add a cluster to the fleet
+  ``` 
+  export GITHUB_TOKEN=<your-token>
+  export GITHUB_USER=<your-username>
+  export GITHUB_REPO=<repository-name>
+
+  ./utils/add-cluster.sh YOUR_CLUSTER_NAME
+  ```
+  This will create flux-system namespace in your cluster in create a few folders on the repo
+- Commit and push changes created by add-cluster.sh
+- Check that new infra namespaces are created in the cluster, such as "nginx"
+  ```
+  kubectl get namespaces
+
+  NAME              STATUS   AGE
+  default           Active   28m
+  kube-system       Active   28m
+  kube-public       Active   28m
+  kube-node-lease   Active   28m
+  nginx             Active   7m48s
+  flux-system       Active   24m
+```
 
 ### Add a cluster to an environment
 TBD
