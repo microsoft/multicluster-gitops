@@ -5,6 +5,7 @@ metadata:
   name: azure-vote
   namespace: dev-kaizentm
 spec:
+  targetNamespace: dev-kaizentm
   interval: 1m0s
   path: ./azure-vote
   prune: false
