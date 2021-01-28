@@ -1,0 +1,6 @@
+- concept of multi-cluster environments (vs one cluster per environment)
+- environments are separated with branches and clusters are separated with folders
+- central place in the repo for flux-system
+- separation of common infra vs env-specific infra
+- multiple apps per tenant
+- scripts to add cluster/tenant/app/environment
