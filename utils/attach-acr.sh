@@ -10,5 +10,3 @@ kubectl create secret docker-registry acr-secret \
   --docker-email=ignorethis@email.com \
   --namespace dev-kaizentm
 
-
-  kubectl patch crd helmreleases.helm.toolkit.fluxcd.io --type=merge --patch '{"metadata":{"finalizers":[]}}'
