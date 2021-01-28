@@ -81,11 +81,32 @@ To add a cluster to an environment (e.g Dev) switch to dev branch of this repo a
   dev-redis         Active   16m
   ```
 
-
 ### Remove a cluster
-TBD
+To remove a cluster from an environment (e.g Dev) switch to dev branch of this repo and perform the following:
+- Execute the following command:
+  ```
+  ./utils/remove-cluster-from-environment.sh YOUR_CLUSTER_NAME
+  ```
+  This will delete YOUR_CLUSTER_NAME subfolders in "clusters","infra" and "tenants" folders. It will also delete dev-flux-system namespace, "infrastructure" and "tenants" Flux Kustomizations in the cluster.  
+- Commit and push changes created by remove-cluster-from-environment.sh
+- Check that environment specific namespaces are deleted
+  ```
+  kubectl get namespaces
+
+  NAME              STATUS   AGE
+  default           Active   3h5m
+  kube-system       Active   3h5m
+  kube-public       Active   3h5m
+  kube-node-lease   Active   3h5m
+  flux-system       Active   3h1m
+  nginx             Active   164m
+  ```
+
 
 ### Add/Remove a tenant
+TBD
+
+### Add/Remove tenant'a application
 TBD
 
 ### Add an environment
