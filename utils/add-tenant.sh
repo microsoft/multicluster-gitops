@@ -38,46 +38,5 @@ for cluster in `find ./clusters -type d -not -path "./clusters/base" -maxdepth 1
     cd -  
 done
 
-# cp ./utils/templates/tenants/* $BASE_TENANT_FOLDER/
-# ./utils/update-name.sh $BASE_TENANT_FOLDER 'ENV_NAME' $ENV_NAME
-# ./utils/update-name.sh $BASE_TENANT_FOLDER 'TENANT_NAME' $TENANT_NAME
-
-# mkdir -p  ./clusters/$CLUSTER_NAME
-# cp ./utils/templates/clusters/* ./clusters/$CLUSTER_NAME/
-# ./utils/update-name.sh ./clusters/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
-# ./utils/update-name.sh ./clusters/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
-
-# # add to infra folder
-# mkdir -p  ./infra/$CLUSTER_NAME
-# cp ./utils/templates/infra/* ./infra/$CLUSTER_NAME/
-
-# # add to tenants folder
-# mkdir -p  ./tenants/$CLUSTER_NAME
-
-# for tenant in `find ./tenants/base -type d -maxdepth 1 -mindepth 1`; do \
-#     TENANT_NAME=$(basename $tenant)
-#     TENANT_FOLDER=./tenants/$CLUSTER_NAME/$TENANT_NAME
-#     mkdir -p $TENANT_FOLDER 
-#     for app in `find $tenant -type d -maxdepth 1 -mindepth 1`; do \
-#       APP_NAME=$(basename $app)
-#       APP_FOLDER=$TENANT_FOLDER/$APP_NAME
-#       mkdir -p $APP_FOLDER
-#       cp ./utils/templates/tenants/app/* $APP_FOLDER/
-#       ./utils/update-name.sh $APP_FOLDER 'APP_NAME' $APP_NAME
-#     done
-#     cd $TENANT_FOLDER 
-#     kustomize create --autodetect --recursive --resources ../../base/$TENANT_NAME  
-#     cd $ROOT_FOLDER  
-#     ./utils/update-name.sh ./tenants/$CLUSTER_NAME/$TENANT_NAME 'TENANT_NAME' $TENANT_NAME
-# done
-# cd ./tenants/$CLUSTER_NAME 
-# kustomize create --autodetect --recursive
-# cd $ROOT_FOLDER  
-
-# ./utils/update-name.sh ./tenants/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
-# ./utils/update-name.sh ./tenants/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
-
-# kustomize build ./clusters/$CLUSTER_NAME | kubectl apply -f-
-
 
 

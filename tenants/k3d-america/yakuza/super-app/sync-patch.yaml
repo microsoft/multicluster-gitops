@@ -1,0 +1,7 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: super-app
+  namespace: dev-yakuza
+spec:
+  path: ./super-app/k3d-america
