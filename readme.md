@@ -42,7 +42,7 @@ To add a cluster to a fleet perform the following:
 
   ./utils/add-cluster.sh YOUR_CLUSTER_NAME
   ```
-  This will create flux-system namespace in your cluster in create a few folders on the repo
+  This will create flux-system namespace in your cluster in create a few folders in the repo
 - Commit and push changes created by add-cluster.sh
 - Check that new infra namespaces are created in the cluster, such as "nginx"
   ```
@@ -55,10 +55,32 @@ To add a cluster to a fleet perform the following:
   kube-node-lease   Active   28m
   nginx             Active   7m48s
   flux-system       Active   24m
-```
+  ```
 
 ### Add a cluster to an environment
-TBD
+To add a cluster to an environment (e.g Dev) switch to dev branch of this repo and perform the following:
+- Execute the following command:
+  ```
+  ./utils/add-cluster-environment.sh YOUR_CLUSTER_NAME
+  ```
+  This will create YOUR_CLUSTER_NAME subfolders in "clusters","infra" and "tenants" folders. It will also create dev-flux-system namespace, "infrastructure" and "tenants" Flux Kustomizations in the cluster.  
+- Commit and push changes created by add-cluster-environment.sh
+- Check that new namespaces with environment specific infra (e.g. dev-redis) and tenants namespaces (e.g. dev-kaizentm) are created in the cluster
+  ```
+  kubectl get namespaces
+
+  NAME              STATUS   AGE
+  default           Active   3h5m
+  kube-system       Active   3h5m
+  kube-public       Active   3h5m
+  kube-node-lease   Active   3h5m
+  flux-system       Active   3h1m
+  nginx             Active   164m
+  dev-flux-system   Active   18m
+  dev-kaizentm      Active   16m
+  dev-redis         Active   16m
+  ```
+
 
 ### Remove a cluster
 TBD
