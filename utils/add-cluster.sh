@@ -11,11 +11,11 @@
 CLUSTER_NAME=$1
 
 mkdir -p  ./clusters/$CLUSTER_NAME
-cp ./utils/templates/cluster-infra-flux-kustomization.yaml ./clusters/$CLUSTER_NAME/infra.yaml
+cp ./utils/templates/clusters/infra.yaml ./clusters/$CLUSTER_NAME/infra.yaml
 sed -i 's/{CLUSTER_NAME}/'$CLUSTER_NAME'/g' ./clusters/$CLUSTER_NAME/infra.yaml
 
 mkdir -p  ./infra/$CLUSTER_NAME
-cp ./utils/templates/cluster-infra-k8s-kustomization.yaml ./infra/$CLUSTER_NAME/kustomization.yaml
+cp ./utils/templates/infra/kustomization.yaml ./infra/$CLUSTER_NAME/kustomization.yaml
 
 
 flux bootstrap github \
