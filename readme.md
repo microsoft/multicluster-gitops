@@ -20,7 +20,7 @@ The [Main branch](https://github.com/kaizentm/multicluster-gitops) contains reso
 
 When a new cluster is added to the setup it should be bootstrapped with Flux. The [flux bootstrap](https://toolkit.fluxcd.io/cmd/flux_bootstrap/) command points to [cluster/base/flux-system](cluster/base/flux-system) folder in the Main branch and creates in the new cluster flux-system namespace, GitRepository source, Flux Kustomization, CRDs and all necessary Flux binary components. 
 
-In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). See [add a cluster](#add_a_cluster) procedure for the details.
+In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). Pay attention, that "cluster" here may represent not a single physical cluster but a group of clusters with the exact same configurations, for example a group of clusters in a region.  See [add a cluster](#add_a_cluster) procedure for the details.
 
 When the new new cluster is added to an environment (e.g. dev), the dev-flux-system namespace, GitRepository source, Flux Kustomizations "infrastructure" and "tenants" are created. See [add a cluster to an environment](#add_a_cluster_to_an_environment) procedure for the details.
 
@@ -42,7 +42,9 @@ To add a cluster to a fleet perform the following:
 
   ./utils/add-cluster.sh YOUR_CLUSTER_NAME
   ```
-  This will create flux-system namespace in your cluster in create a few folders in the repo
+  This will create flux-system namespace in your cluster and create a few folders in the repo
+  YOUR_CLUSTER_NAME may be a cluster group name, so every time we are adding a new cluster from the group we are specifying the same group name.
+  
 - Commit and push changes created by add-cluster.sh
 - Check that new infra namespaces are created in the cluster, such as "nginx"
   ```
@@ -55,7 +57,7 @@ To add a cluster to a fleet perform the following:
   kube-node-lease   Active   28m
   nginx             Active   7m48s
   flux-system       Active   24m
-  ```
+  ```    
 
 ### Add a cluster to an environment
 To add a cluster to an environment (e.g Dev) switch to dev branch of this repo and perform the following:
