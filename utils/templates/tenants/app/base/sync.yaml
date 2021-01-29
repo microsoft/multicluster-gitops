@@ -7,7 +7,7 @@ metadata:
 spec:
   targetNamespace: {ENV_NAME}-{TENANT_NAME}
   interval: 1m0s
-  path: ./{APP_FOLDER_NAME}
+  path: ./{APP_NAME}
   prune: false
   serviceAccountName: {TENANT_NAME}
   sourceRef:

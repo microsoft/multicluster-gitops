@@ -2,12 +2,11 @@
 
 # Usage:
 # 
-# add-app.sh TENANT_NAME APP_NAME APP_FOLDER_NAME
+# add-app.sh TENANT_NAME APP_NAME
 
 
 TENANT_NAME=$1
 APP_NAME=$2
-APP_FOLDER_NAME=$3
 ENV_NAME=$(cat ./ENV_NAME)
 
 
@@ -17,7 +16,6 @@ cp ./utils/templates/tenants/app/base/* $BASE_APP_FOLDER/
 ./utils/update-name.sh $BASE_APP_FOLDER 'APP_NAME' $APP_NAME
 ./utils/update-name.sh $BASE_APP_FOLDER 'TENANT_NAME' $TENANT_NAME
 ./utils/update-name.sh $BASE_APP_FOLDER 'ENV_NAME' $ENV_NAME
-./utils/update-name.sh $BASE_APP_FOLDER 'APP_FOLDER_NAME' $APP_FOLDER_NAME
 
 
 # add to each cluster
