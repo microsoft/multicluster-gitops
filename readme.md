@@ -112,7 +112,7 @@ To add a tenant to an environment switch to the environment branch (e.g. dev) an
   ```
   ./utils/add-tenant.sh yakuza https://github.com/yakuza/gitops-manifests dev
   ```
-  This will corresponding subfolders for each cluster in "tenants" folder.
+  This will create corresponding subfolders for each cluster in "tenants" folder.
 - Commit and push changes created by add-tenant.sh
 - Check that tenant's namespace for this environment (e.g dev-yakuza) is available on the environment clusters
   ```
@@ -138,7 +138,7 @@ To add tenant's application to an environment switch to the environment branch (
   ./utils/add-app.sh TENANT_NAME APP_NAME APP_FOLDER_NAME
   ```
   APP_FOLDER_NAME refers to a folder in tenant's manifest repo where the application manifests are stored.
-  This will corresponding subfolders for each cluster in "tenants" folder.
+  This will create corresponding subfolders for each cluster in "tenants" folder.
 - Commit and push changes created by add-tenant.sh
 - Check that application components have been installed on the environment clusters
 
