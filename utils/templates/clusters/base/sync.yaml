@@ -7,5 +7,5 @@ spec:
   interval: 1m0s
   ref:
     branch: {ENV_NAME}-flux-system
-  url: {REPO_URL}
+  url: https://github.com/kaizentm/multicluster-gitops
 ---
