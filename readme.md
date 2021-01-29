@@ -135,9 +135,8 @@ To add a tenant to an environment switch to the environment branch (e.g. dev) an
 To add tenant's application to an environment switch to the environment branch (e.g. dev) and perform the following:
 - Execute the following command
   ```
-  ./utils/add-app.sh TENANT_NAME APP_NAME APP_FOLDER_NAME
+  ./utils/add-app.sh TENANT_NAME APP_NAME
   ```
-  APP_FOLDER_NAME refers to a folder in tenant's manifest repo where the application manifests are stored.
   This will create corresponding subfolders for each cluster in "tenants" folder.
 - Commit and push changes created by add-tenant.sh
 - Check that application components have been installed on the environment clusters
