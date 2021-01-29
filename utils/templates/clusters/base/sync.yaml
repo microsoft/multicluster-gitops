@@ -1,11 +1,11 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: {ENV-NAME}-flux-system
-  namespace: {ENV-NAME}-flux-system
+  name: {ENV_NAME}-flux-system
+  namespace: {ENV_NAME}-flux-system
 spec:
   interval: 1m0s
   ref:
-    branch: {ENV-NAME}-flux-system
-  url: {REPO-URL}
+    branch: {ENV_NAME}-flux-system
+  url: {REPO_URL}
 ---

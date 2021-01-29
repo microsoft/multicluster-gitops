@@ -9,7 +9,7 @@ ENV_NAME=$(cat ./ENV_NAME)
 
 # add to clusters folder
 mkdir -p  ./clusters/$CLUSTER_NAME
-cp ./utils/templates/clusters/* ./clusters/$CLUSTER_NAME/
+cp ./utils/templates/clusters/cluster/* ./clusters/$CLUSTER_NAME/
 ./utils/update-name.sh ./clusters/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
 ./utils/update-name.sh ./clusters/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
 
