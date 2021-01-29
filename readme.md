@@ -81,7 +81,7 @@ To add a cluster to an environment (e.g Dev) switch to dev branch of this repo a
   dev-redis         Active   16m
   ```
 
-### Remove a cluster
+### Remove a cluster from an environment
 To remove a cluster from an environment (e.g Dev) switch to dev branch of this repo and perform the following:
 - Execute the following command:
   ```
@@ -102,18 +102,61 @@ To remove a cluster from an environment (e.g Dev) switch to dev branch of this r
   nginx             Active   164m
   ```
 
+### Add a tenant
+To add a tenant to an environment switch to the environment branch (e.g. dev) and perform the following:
+- Execute the following command
+  ```
+  ./utils/add-tenant.sh TENANT_NAME REPO_URL REPO_BRANCH_NAME
+  ```
+  for example 
+  ```
+  ./utils/add-tenant.sh yakuza https://github.com/yakuza/gitops-manifests dev
+  ```
+  This will corresponding subfolders for each cluster in "tenants" folder.
+- Commit and push changes created by add-tenant.sh
+- Check that tenant's namespace for this environment (e.g dev-yakuza) is available on the environment clusters
+  ```
+  kubectl get namespaces
 
-### Add/Remove a tenant
-TBD
+  NAME              STATUS   AGE
+  default           Active   3h5m
+  kube-system       Active   3h5m
+  kube-public       Active   3h5m
+  kube-node-lease   Active   3h5m
+  flux-system       Active   3h1m
+  nginx             Active   164m
+  dev-flux-system   Active   18m
+  dev-kaizentm      Active   16m
+  dev-redis         Active   16m
+  dev-yakuza        Active   16m
+  ```
 
-### Add/Remove tenant'a application
-TBD
+### Add tenant'a application
+To add tenant's application to an environment switch to the environment branch (e.g. dev) and perform the following:
+- Execute the following command
+  ```
+  ./utils/add-app.sh TENANT_NAME APP_NAME APP_FOLDER_NAME
+  ```
+  APP_FOLDER_NAME refers to a folder in tenant's manifest repo where the application manifests are stored.
+  This will corresponding subfolders for each cluster in "tenants" folder.
+- Commit and push changes created by add-tenant.sh
+- Check that application components have been installed on the environment clusters
 
-### Add an environment
-TBD
+
+### Init an environment
+To initialize a new environment create a new branch from an existing environment (e.g. dev)
+for example
+```
+git checkout -b qa
+```
+and execute the following command:  
+```
+./utils/init-environment.sh qa
+```
+this will clean all clusters, infra and tenants subfolders and leave only initial files. 
+
 
 ### Resources
-
 - [Multi-Tenancy Strategies](https://github.com/fluxcd/flux2/discussions/263)
 - [Flux V2 Multi-Tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
 - [Flux v2 Kustomize-Helm example](https://github.com/fluxcd/flux2-kustomize-helm-example)
