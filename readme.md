@@ -14,7 +14,7 @@ To better understand the solution provided in this repository, it would be helpf
 
 ![multi-cluster-tenant-layout.png](docs/images/multi-cluster-tenant-layout.png)
 
-The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this one) represents environments with branches. For example, [Dev branch](https://github.com/kaizentm/multicluster-gitops/tree/dev) describes clusters, infrastructure resources, tenants with their applications, everything that Dev environment consists of. QA branch describes resources for the QA environment and so on. In order to make changes in an environment configurations one needs to create a PR o the corresponding branch. Different branches/environments normally have different reviewing/approving policies.
+The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this one) represents environments with branches. For example, [Dev branch](https://github.com/kaizentm/multicluster-gitops/tree/dev) describes clusters, infrastructure resources, tenants with their applications, everything that Dev environment consists of. QA branch describes resources for the QA environment and so on. In order to make changes in an environment configurations one needs to create a PR to the corresponding branch. Different branches/environments normally have different reviewing/approving policies.
 
 The [Main branch](https://github.com/kaizentm/multicluster-gitops) contains resources outside of environments, things that are common and shared by all environments. It might be Flux binary components running in flux-system namespace, any common infrastructure microservices such as Nginx, for example. 
 
