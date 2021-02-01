@@ -6,6 +6,6 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: dev
+    branch: dev-test
   url: https://github.com/kaizentm/multicluster-gitops
 ---

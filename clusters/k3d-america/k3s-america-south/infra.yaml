@@ -1,6 +1,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: infrastructure
+  name: k3s-america-south-infrastructure
+  namespace: dev-flux-system
 spec:
-  path: ./infra/k3d-america/k3d-america-south
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: dev-flux-system
+  path: ./infra/k3d-america/k3s-america-south
+  prune: true
+  validation: client
+kubeConfig:
+  secretRef:
+    name: k3s-america-south-kubeconfig
