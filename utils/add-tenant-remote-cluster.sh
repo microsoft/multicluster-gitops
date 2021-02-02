@@ -24,7 +24,7 @@ add-tenant-remote-cluster() {
     cd $TENANT_FOLDER 
     kustomize create --autodetect --recursive --resources ../../../../base/$TENANT_NAME  
     cd -  
-    update_name ./tenants/$CLUSTER_NAME/$TENANT_NAME 'TENANT_NAME' $TENANT_NAME
+    update_name $TENANT_FOLDER 'TENANT_NAME' $TENANT_NAME
 
 }
 
