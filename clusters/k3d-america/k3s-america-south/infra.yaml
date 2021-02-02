@@ -11,6 +11,6 @@ spec:
   path: ./infra/k3d-america/k3s-america-south
   prune: true
   validation: client
-kubeConfig:
-  secretRef:
-    name: k3s-america-south-kubeconfig
+  kubeConfig:
+    secretRef:
+      name: k3s-america-south-kubeconfig
