@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: tenants
-  namespace: k3s-america-south-dev-flux-system
+  name: k3s-america-south-tenants
+  namespace: dev-flux-system
 spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
     name: dev-flux-system
-  path: ./tenants/k3d-america/k3s-america-south
+  path: ./tenants/k3d-america/clusters/k3s-america-south
   prune: true
   validation: client

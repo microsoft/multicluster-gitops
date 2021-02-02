@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: dev-flux-system
 resources:
 - infra.yaml
-# - tenants.yaml
+- tenants.yaml
