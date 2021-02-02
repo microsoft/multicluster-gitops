@@ -4,7 +4,7 @@ metadata:
   name: katana-vote
   namespace: dev-yakuza
 spec:
-  path: ./katana-vote/k3d-america
+  path: ./katana-vote/k3s-america-south
   kubeConfig:
     secretRef:
       name: k3s-america-south-kubeconfig
