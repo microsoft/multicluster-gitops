@@ -35,8 +35,8 @@ for cluster in `find ./clusters -type d -not -path "./clusters/base" -maxdepth 1
     mkdir -p $CLUSTER_FOLDER
     add-tenant-cluster $CLUSTER_NAME $TENANT_NAME
     cd $CLUSTER_FOLDER 
-    rm -f kustomization.yaml
-    kustomize create --autodetect --recursive
+    [ -f kustomization.yaml ] || kustomize create
+    kustomize edit add resource $TENANT_NAME
     cd -  
     for remote_cluster in `find $cluster -type d -maxdepth 1 -mindepth 1`; do \
         REMOTE_CLUSTER_NAME=$(basename $remote_cluster)
