@@ -1,0 +1,11 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: katana-vote
+  namespace: dev-{TENANT_NAME}
+spec:
+  path: ./katana-vote/k3s-america-north
+  kubeConfig:
+    secretRef:
+      name: k3s-america-north-kubeconfig
+
