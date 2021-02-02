@@ -52,7 +52,6 @@ update_name ./tenants/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
 update_name ./tenants/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
 update_name ./tenants/$CLUSTER_NAME 'REMOTE_CLUSTER_NAME' $REMOTE_CLUSTER_NAME                                     
 
-# kustomize build ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME | kubectl apply -f-
-kustomize build ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME
+kustomize build ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME | kubectl apply -f-
 
 
