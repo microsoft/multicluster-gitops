@@ -4,7 +4,7 @@ metadata:
   name: azure-vote
   namespace: dev-kaizentm
 spec:
-  path: ./azure-vote/k3d-america
+  path: ./azure-vote/k3s-america-south
   kubeConfig:
     secretRef:
       name: k3s-america-south-kubeconfig
