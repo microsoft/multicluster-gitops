@@ -19,12 +19,12 @@ add-tenant-remote-cluster() {
         APP_FOLDER=$TENANT_FOLDER/$APP_NAME
         mkdir -p $APP_FOLDER
         cp ./utils/templates/tenants/app/remote/* $APP_FOLDER/
-        update-name.sh $APP_FOLDER 'APP_NAME' $APP_NAME
+        update-name $APP_FOLDER 'APP_NAME' $APP_NAME
     done
     cd $TENANT_FOLDER 
     kustomize create --autodetect --recursive --resources ../../../../base/$TENANT_NAME  
     cd -  
-    update-name.sh ./tenants/$CLUSTER_NAME/$TENANT_NAME 'TENANT_NAME' $TENANT_NAME
+    update-name ./tenants/$CLUSTER_NAME/$TENANT_NAME 'TENANT_NAME' $TENANT_NAME
 
 }
 

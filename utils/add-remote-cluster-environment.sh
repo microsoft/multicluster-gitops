@@ -14,8 +14,8 @@ source ./utils/add-tenant-remote-cluster.sh
 mkdir -p  ./clusters/$CLUSTER_NAME
 mkdir -p  ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME
 cp ./utils/templates/clusters/remote/*.yaml ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME
-update-name.sh ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
-update-name.sh ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME 'ENV_NAME' $ENV_NAME
+update-name ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
+update-name ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME 'ENV_NAME' $ENV_NAME
 
 # add to infra folder
 mkdir -p  ./infra/$CLUSTER_NAME
@@ -36,9 +36,9 @@ cd ./tenants/$CLUSTER_NAME/clusters/$REMOTE_CLUSTER_NAME
 kustomize create --autodetect --recursive
 cd -
 
-update-name.sh ./tenants/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
-update-name.sh ./tenants/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
-update-name.sh ./tenants/$CLUSTER_NAME 'REMOTE_CLUSTER_NAME' $REMOTE_CLUSTER_NAME
+update-name ./tenants/$CLUSTER_NAME 'CLUSTER_NAME' $CLUSTER_NAME
+update-name ./tenants/$CLUSTER_NAME 'ENV_NAME' $ENV_NAME
+update-name ./tenants/$CLUSTER_NAME 'REMOTE_CLUSTER_NAME' $REMOTE_CLUSTER_NAME
 
 kustomize build ./clusters/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME | kubectl apply -f-
 
