@@ -31,7 +31,7 @@ create_remote_secret $REMOTE_CLUSTER_NAME $ENV_NAME-flux-system
 mkdir -p  ./infra/$CLUSTER_NAME
 mkdir -p  ./infra/$CLUSTER_NAME/clusters
 mkdir -p  ./infra/$CLUSTER_NAME/clusters/$REMOTE_CLUSTER_NAME
-cp ./utils/templates/infra/remote/*.yaml ./infra/$CLUSTER_NAME/
+cp ./utils/templates/infra/remote/*.yaml ./infra/$CLUSTER_NAME/$REMOTE_CLUSTER_NAME/
 
 # add to tenants folder
 rm -r -f ./tenants/$CLUSTER_NAME/clusters/$REMOTE_CLUSTER_NAME
