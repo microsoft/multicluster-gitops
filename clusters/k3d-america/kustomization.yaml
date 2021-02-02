@@ -5,4 +5,3 @@ resources:
 - ../base
 - infra.yaml
 - tenants.yaml
-- k3s-america-south
