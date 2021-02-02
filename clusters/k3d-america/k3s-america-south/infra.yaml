@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: dev-flux-system
-  path: ./infra/k3d-america/k3s-america-south
+  path: ./infra/k3d-america/clusters/k3s-america-south
   prune: true
   validation: client
   kubeConfig:
