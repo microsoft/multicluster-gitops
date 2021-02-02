@@ -4,7 +4,7 @@
 # 
 # update-name FOLDER NAME VALUE
 
-uodate-name() {
+update_name() {
     FOLDER=$1 
     NAME=$2 
     VALUE=$3
