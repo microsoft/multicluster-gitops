@@ -12,9 +12,7 @@ The repository targets to cover the following use-cases:
 
 To better understand the solution provided in this repository, it would be helpful to follow the whole reconciliation process of a dev environment happening on one of the clusters in a fleet. This process is represented on the following diagram:
 
-![multi-cluster-tenant.png](docs/images/multi-cloud.png)
-<!-- <img src="https://github.com/kaizentm/multicluster-gitops/blob/eedorenko/remote-clusters-doc/docs/images/multi-cluster-tenant.png" width="480"> -->
-<!-- ![](docs/images/multi-cluster-tenant.png?s=2000) -->
+![multi-cluster-layout.png](docs/images/multi-cloud.png)
 
 The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this one) represents environments with branches. For example, [Dev branch](https://github.com/kaizentm/multicluster-gitops/tree/dev) describes clusters, infrastructure resources, tenants with their applications, everything that Dev environment consists of. QA branch describes resources for the QA environment and so on. In order to make changes in an environment configurations one needs to create a PR to the corresponding branch. Different branches/environments normally have different reviewing/approving policies.
 
