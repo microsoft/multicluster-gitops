@@ -4,4 +4,4 @@ metadata:
   name: azure-vote
   namespace: dev-kaizentm
 spec:
-  path: ./azure-vote/k3s-assia
+  path: ./azure-vote/k3s-asia

@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: infrastructure
+  name: tenants
   namespace: dev-flux-system
 spec:
-  interval: 10m0s
+  interval: 5m
   sourceRef:
     kind: GitRepository
     name: dev-flux-system
-  path: ./infra/k3s-assia
+  path: ./tenants/k3s-asia
   prune: true
   validation: client
