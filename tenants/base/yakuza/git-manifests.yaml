@@ -7,6 +7,6 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: dev
+    branch: multi-dev
   url: https://github.com/kaizentm/gitops-manifests
 
