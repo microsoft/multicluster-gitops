@@ -12,7 +12,8 @@ The repository targets to cover the following use-cases:
 
 To better understand the solution provided in this repository, it would be helpful to follow the whole reconciliation process of a dev environment happening on one of the clusters in a fleet. This process is represented on the following diagram:
 
-![multi-cluster-tenant.png](docs/images/multi-cluster-tenant.png)
+<!-- ![multi-cluster-tenant.png](docs/images/multi-cluster-tenant.png) -->
+<img src="docs/images/multi-cluster-tenant.png" width="480">
 
 The [fleet repository](https://github.com/kaizentm/multicluster-gitops) (this one) represents environments with branches. For example, [Dev branch](https://github.com/kaizentm/multicluster-gitops/tree/dev) describes clusters, infrastructure resources, tenants with their applications, everything that Dev environment consists of. QA branch describes resources for the QA environment and so on. In order to make changes in an environment configurations one needs to create a PR to the corresponding branch. Different branches/environments normally have different reviewing/approving policies.
 
@@ -22,14 +23,14 @@ When a new cluster is added to the setup it should be bootstrapped with Flux. Th
 
 In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/infra.yaml) is created to reconcile all common infra resources that should be installed on the cluster. In this case this reconciliation creates Nginx namespace, HelmRepository source and HelmRelease that will fetch Nginx helm chart from Bitnami Helm repository and install it on the cluster. Although Nginx is a common resource, which is supposed to be installed on every cluster, each cluster may have some specific configurations. Here we override ingress service port number in [infra/k3d-america/nginx/release.yaml](infra/k3d-america/nginx/release.yaml). Pay attention, that "cluster" here may represent not a single physical cluster but a group of clusters with the exact same configurations, for example a group of clusters in a region.  See [add a cluster](#add-a-cluster) procedure for the details.
 
-When the new new cluster is added to an environment (e.g. dev), the dev-flux-system namespace, GitRepository source, Flux Kustomizations "infrastructure" and "tenants" are created. See [add a cluster to an environment](#add_a_cluster_to_an_environment) procedure for the details.
+When the new new cluster is added to an environment (e.g. dev), the dev-flux-system namespace, GitRepository source, Flux Kustomizations "infrastructure" and "tenants" are created. See [add a cluster to an environment](#add-a-cluster-to-an-environment) procedure for the details.
 
 Flux Kustomizations "infrastructure" in the dev-flux-system namespace reconciles all infra resources that are specific for this environment. In this case dev-redis namespace with a corresponding deployment is created. We override specific for the k3d-america cluster deployment parameters in [infra/k3d-america/redis/redis.yaml](https://github.com/kaizentm/multicluster-gitops/blob/dev/infra/k3d-america/redis/redis.yaml). 
 
 Flux Kustomizations "tenants" refers to a list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to the dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again, since the application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
 
 A cluster can be added to the fleet as a "remote" cluster. This means it doesn't have any Flux components installed and it's not connected to a Git repository. All deployments to a "remote" cluster are propagated by Flux working on a "management" cluster. For example "k3s-america-south" is a "remote" cluster managed by "k3d-america" "management" cluster. "k3d-america" cluster has Flux Kustomization "k3s-america-south-infrastructure" that replicates resources from infra/k3d-america/clusters/k3s-america-south folder to "k3s-america-south" cluster. In a similar way Flux Kustomization "k3s-america-south-azure-vote" in "dev-kaizentm" namespace replicates "azure-vote" application to 
-"k3s-america-south" cluster. See [add a remote cluster to an environment](#add_a_remote_cluster_to_an_environment) procedure for adding a remote cluster to an environment.
+"k3s-america-south" cluster. See [add a remote cluster to an environment](#add-a-remote-cluster-to-an-environment) procedure for adding a remote cluster to an environment.
 
 
 ### Add a cluster
