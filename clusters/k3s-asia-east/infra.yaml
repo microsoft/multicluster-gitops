@@ -9,6 +9,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: ./infra/k3s-asia
+  path: ./infra/k3s-asia-east
   prune: true
   validation: client
