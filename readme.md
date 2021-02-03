@@ -24,9 +24,13 @@ In addition to that [Flux Kustomization "infrastructure"](clusters/k3d-america/i
 
 When the new new cluster is added to an environment (e.g. dev), the dev-flux-system namespace, GitRepository source, Flux Kustomizations "infrastructure" and "tenants" are created. See [add a cluster to an environment](#add_a_cluster_to_an_environment) procedure for the details.
 
-Flux Kustomizations "infrastructure" reconciles all infra resources that are specific for this environment. In this case Redis namespace with a corresponding deployment is created. We override specific for the k3d-america cluster deployment parameters in [infra/k3d-america/redis/redis.yaml](https://github.com/kaizentm/multicluster-gitops/blob/dev/infra/k3d-america/redis/redis.yaml). 
+Flux Kustomizations "infrastructure" in the dev-flux-system namespace reconciles all infra resources that are specific for this environment. In this case dev-redis namespace with a corresponding deployment is created. We override specific for the k3d-america cluster deployment parameters in [infra/k3d-america/redis/redis.yaml](https://github.com/kaizentm/multicluster-gitops/blob/dev/infra/k3d-america/redis/redis.yaml). 
 
 Flux Kustomizations "tenants" refers to a list of tenants sharing the Dev environment on this cluster. It creates a namespace for each tenant which is considered as a sandbox for this tenant in this environment on this cluster. Within the namespace it creates GitRepository source pointing to Dev branch of tenant's manifests repository that contains applications manifests to be deployed to the dev environment. Each tenant has a number of applications. For each of them a Flux Kustomization is created to reconcile the application resources. For example, Flux Kustomization "azure-vote" creates Azure Vote application components. Again, since the application on every cluster (even in the same environment) may be deployed with specific configurations, the Kustomization reads application manifests from k3d-america folder.
+
+A cluster can be added to the fleet as a "remote" cluster. This means it doesn't have any Flux components installed and it's not connected to a Git repository. All deployments to a "remote" cluster are propagated by Flux working on a "management" cluster. For example "k3s-america-south" is a "remote" cluster managed by "k3d-america" "management" cluster. "k3d-america" cluster has Flux Kustomization "k3s-america-south-infrastructure" that replicates resources from infra/k3d-america/clusters/k3s-america-south folder to "k3s-america-south" cluster. In a similar way Flux Kustomization "k3s-america-south-azure-vote" in "dev-kaizentm" namespace replicates "azure-vote" application to 
+"k3s-america-south" cluster. See [add a remote cluster to an environment](#add_a_remote_cluster_to_an_environment) procedure for adding a remote cluster to an environment.
+
 
 ### Add a cluster
 To add a cluster to a fleet perform the following:
@@ -79,6 +83,32 @@ To add a cluster to an environment (e.g Dev) switch to dev branch of this repo a
   flux-system       Active   3h1m
   nginx             Active   164m
   dev-flux-system   Active   18m
+  dev-kaizentm      Active   16m
+  dev-redis         Active   16m
+  ```
+
+### Add a remote cluster to an environment
+To add a remote cluster to an environment (e.g Dev) switch to dev branch of this repo and perform the following:
+- Execute the following command:
+  ```
+  ./utils/add-remote-cluster-environment.sh MANAGED_CLUSTER_NAME REMOTE_CLUSTER_NAME KUBE_CONFIG_FILE
+  ```
+  for example 
+  ```
+  ./utils/add-remote-cluster-environment.sh k3d-america k3s-america-north ./k3s-america-north.conf
+  ```
+  where k3s-america-north.conf is a kubeconfig file to connect to k3s-america-north.
+  This will create MANAGED_CLUSTER_NAME/REMOTE_CLUSTER_NAME subfolder in "clusters" folder and MANAGED_CLUSTER_NAME/clusters/REMOTE_CLUSTER_NAME subfolders in "infra" and "tenants" folders. 
+- Commit and push changes created by add-remote-cluster-environment.sh
+- Check on the "remote" cluster "k3s-america-north" that new namespaces with environment specific infra (e.g. dev-redis) and tenants namespaces (e.g. dev-kaizentm) are created in the cluster
+  ```
+  kubectl get namespaces
+
+  NAME              STATUS   AGE
+  default           Active   3h5m
+  kube-system       Active   3h5m
+  kube-public       Active   3h5m
+  kube-node-lease   Active   3h5m
   dev-kaizentm      Active   16m
   dev-redis         Active   16m
   ```
