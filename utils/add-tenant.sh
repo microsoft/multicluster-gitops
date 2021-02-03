@@ -9,6 +9,8 @@ REPO_URL=$2
 REPO_BRANCH_NAME=$3
 ENV_NAME=$(cat ./ENV_NAME)
 NAMESPACE_NAME=$ENV_NAME-$TENANT_NAME
+source ./utils/add-tenant-cluster.sh
+source ./utils/add-tenant-remote-cluster.sh
 
 # add to tenants/base
 BASE_TENANT_FOLDER=./tenants/base/$TENANT_NAME
@@ -31,11 +33,21 @@ for cluster in `find ./clusters -type d -not -path "./clusters/base" -maxdepth 1
     CLUSTER_NAME=$(basename $cluster)
     CLUSTER_FOLDER=./tenants/$CLUSTER_NAME
     mkdir -p $CLUSTER_FOLDER
-    ./utils/add-tenant-cluster.sh $CLUSTER_NAME $TENANT_NAME
+    add-tenant-cluster $CLUSTER_NAME $TENANT_NAME
     cd $CLUSTER_FOLDER 
-    rm -f kustomization.yaml
-    kustomize create --autodetect --recursive
+    [ -f kustomization.yaml ] || kustomize create
+    kustomize edit add resource $TENANT_NAME
     cd -  
+    for remote_cluster in `find $cluster -type d -maxdepth 1 -mindepth 1`; do \
+        REMOTE_CLUSTER_NAME=$(basename $remote_cluster)
+        REMOTE_CLUSTER_FOLDER=./tenants/$CLUSTER_NAME/clusters/$REMOTE_CLUSTER_NAME
+        mkdir -p $REMOTE_CLUSTER_FOLDER
+        add-tenant-remote-cluster $CLUSTER_NAME $REMOTE_CLUSTER_NAME $TENANT_NAME
+        cd $REMOTE_CLUSTER_FOLDER 
+        rm -f kustomization.yaml
+        kustomize create --autodetect --recursive
+        cd -        
+    done
 done
 
 

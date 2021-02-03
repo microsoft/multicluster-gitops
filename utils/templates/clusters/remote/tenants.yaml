@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: {REMOTE_CLUSTER_NAME}-tenants
+  namespace: {ENV_NAME}-flux-system
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: {ENV_NAME}-flux-system
+  path: ./tenants/{CLUSTER_NAME}/clusters/{REMOTE_CLUSTER_NAME}
+  prune: true
+  validation: client
