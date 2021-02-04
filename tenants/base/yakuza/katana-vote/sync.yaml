@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: katana-vote
+  namespace: dev-yakuza
+spec:
+  targetNamespace: dev-yakuza
+  interval: 1m0s
+  path: ./katana-vote
+  prune: false
+  serviceAccountName: yakuza
+  sourceRef:
+    kind: GitRepository
+    name: yakuza-manifests
+
