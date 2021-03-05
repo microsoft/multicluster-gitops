@@ -30,7 +30,7 @@ spec:
   sshPublicKey: ""
   subscriptionID: {{ .Values.subscriptionId }} #0fe1cc35-0cfa-4152-97d7-5dfb45a8d4ba
   version: {{ .Values.k8sVersion }} #v1.19.6
-  networkPolicy: {{ .Values.networkPolicy }} # azure or calico
+  # networkPolicy: {{ .Values.networkPolicy }} # azure or calico
   networkPlugin: {{ .Values.networkPlugin }} # azure or kubenet
 ---
 apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
