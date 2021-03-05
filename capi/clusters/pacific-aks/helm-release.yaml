@@ -10,6 +10,7 @@ spec:
         kind: GitRepository
         name: flux-system
         namespace: flux-system
+  interval: 10m
   values:
     name: pacific-aks
     clusterResourceGroup: pacific-aks-rg
