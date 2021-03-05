@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pacific-aks-helm-release
+  namespace: capi-worker-clusters
+spec:
+  chart:
+    git: git@github.com/kaizentm/multicluster-gitops
+    ref: eedorenko/capi
+    path: capi/mngmt/aks-cluster-chart
+  values:
+    name: pacific-aks
+    clusterResourceGroup: pacific-aks-rg
