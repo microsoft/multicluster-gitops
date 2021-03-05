@@ -1,0 +1,91 @@
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  name: {{ .Values.name }}
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks:
+      - {{ .Values.servicesCidrBlock }} #10.0.0.0/16
+    serviceDomain: cluster.local  
+  controlPlaneRef:
+    apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+    kind: AzureManagedControlPlane
+    name: {{ .Values.name }}
+  infrastructureRef:
+    apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+    kind: AzureManagedCluster
+    name: {{ .Values.name }}
+---
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureManagedControlPlane
+metadata:
+  name: {{ .Values.name }}
+spec:
+  defaultPoolRef:
+    name: {{ .Values.controlAgentPoolName }} # wcagentpool0
+  location: {{ .Values.location }} # eastus
+  resourceGroupName: {{ .Values.clusterResourceGroup }} #capirg
+  nodeResourceGroupName: nodepool-{{ .Values.clusterResourceGroup }}
+  sshPublicKey: ""
+  subscriptionID: {{ .Values.subscriptionId }} #0fe1cc35-0cfa-4152-97d7-5dfb45a8d4ba
+  version: {{ .Values.k8sVersion }} #v1.19.6
+  networkPolicy: {{ .Values.networkPolicy }} # azure or calico
+  networkPlugin: {{ .Values.networkPlugin }} # azure or kubenet
+---
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureManagedCluster
+metadata:
+  name: {{ .Values.name }}
+---
+apiVersion: exp.cluster.x-k8s.io/v1alpha3
+kind: MachinePool
+metadata:
+  name: {{ .Values.controlAgentPoolName }}
+spec:
+  clusterName: {{ .Values.name }}
+  replicas: {{ .Values.controlAgentPoolNodes }}
+  template:
+    spec:
+      bootstrap:
+        dataSecretName: ""
+      clusterName: {{ .Values.name }}
+      infrastructureRef:
+        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AzureManagedMachinePool
+        name: {{ .Values.controlAgentPoolName }}
+      version: {{ .Values.k8sVersion }}
+---
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureManagedMachinePool
+metadata:
+  name: {{ .Values.controlAgentPoolName }}
+spec:
+  # osDiskSizeGB: 512
+  sku: {{ .Values.controlAgentPoolNodeSize }} #Standard_D8s_v3
+---
+apiVersion: exp.cluster.x-k8s.io/v1alpha3
+kind: MachinePool
+metadata:
+  name: {{ .Values.workerAgentPoolName }}
+spec:
+  clusterName: {{ .Values.name }}
+  replicas: {{ .Values.workerAgentPoolNodes }}
+  template:
+    spec:
+      bootstrap:
+        dataSecretName: ""
+      clusterName: {{ .Values.name }}
+      infrastructureRef:
+        apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AzureManagedMachinePool
+        name: {{ .Values.workerAgentPoolName }}
+      version: {{ .Values.k8sVersion }}
+---
+apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AzureManagedMachinePool
+metadata:
+  name: {{ .Values.workerAgentPoolName }}
+spec:
+  # osDiskSizeGB: 512
+  sku: {{ .Values.workerAgentPoolNodeSize }} #Standard_D8s_v3

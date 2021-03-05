@@ -1,0 +1,31 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: {{ .Values.name }}-flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: ./clusters/base/flux-system
+  prune: true
+  kubeConfig:
+    secretRef:
+      name: {{ .Values.name }}-kubeconfig 
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: {{ .Values.name }}-infrastructure
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: {{ .Values.infraPath }} # ./infra/base
+  prune: true
+  kubeConfig:
+    secretRef:
+      name: {{ .Values.name }}-kubeconfig 
