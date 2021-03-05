@@ -9,6 +9,6 @@ networkPlugin: kubenet
 controlAgentPoolName: clagentpool
 controlAgentPoolNodes: 2
 controlAgentPoolNodeSize: Standard_D8s_v3
-workerAgentPoolName: workeragentpool
+workerAgentPoolName: wragentpool
 workerAgentPoolNodes: 1
 workerAgentPoolNodeSize: Standard_D8s_v3
