@@ -11,3 +11,4 @@ controlAgentPoolNodeSize: Standard_D8s_v3
 workerAgentPoolName: wragentpool
 workerAgentPoolNodes: 1
 workerAgentPoolNodeSize: Standard_D8s_v3
+infraPath: ./infra/base
