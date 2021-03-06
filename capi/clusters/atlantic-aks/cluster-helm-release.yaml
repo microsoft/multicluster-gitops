@@ -15,3 +15,6 @@ spec:
   values:
     name: atlantic-aks
     clusterResourceGroup: atlantic-aks-rg
+    controlAgentPoolName: clatlpool
+    workerAgentPoolName: wratlpool
+
