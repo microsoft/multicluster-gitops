@@ -1,3 +1,4 @@
+# Install cluster ctl https://cluster-api.sigs.k8s.io/user/quick-start.html#install-clusterctl
 export AZURE_SUBSCRIPTION_ID=
 export AZURE_TENANT_ID=
 export AZURE_CLIENT_ID=
