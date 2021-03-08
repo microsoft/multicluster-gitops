@@ -31,6 +31,8 @@ Flux Kustomizations "tenants" refers to a list of tenants sharing the Dev enviro
 A cluster can be added to the fleet as a "remote" cluster. This means it doesn't have any Flux components installed and it's not connected to a Git repository. All deployments to a "remote" cluster are propagated by Flux working on a "management" cluster. For example "k3s-america-south" is a "remote" cluster managed by "k3d-america" "management" cluster. "k3d-america" cluster has Flux Kustomization "k3s-america-south-infrastructure" that replicates resources from infra/k3d-america/clusters/k3s-america-south folder to "k3s-america-south" cluster. In a similar way Flux Kustomization "k3s-america-south-azure-vote" in "dev-kaizentm" namespace replicates "azure-vote" application to 
 "k3s-america-south" cluster. See [add a remote cluster to an environment](#add-a-remote-cluster-to-an-environment) procedure for adding a remote cluster to an environment.
 
+Besides managing infrastructure and tenants' workloads on clusters in GitOps way, it's also possible to provision K8s clusters themselves in GitOps fashion. So that we just add a new cluster definition to the fleet repo and, in a while, there is a new cluster provisioned with Flux installed on it and all the required infra setup up and running. Furthermore, the cluster is provisioned in compliance with all the security regulations required in the organization. Follow the [Provision AKS clusters with Flux and CAPI](docs/capi.md) guidance to learn how to provision AKS clusters with CAPI and Flux.
+
 
 ### Add a cluster
 To add a cluster to a fleet perform the following:
