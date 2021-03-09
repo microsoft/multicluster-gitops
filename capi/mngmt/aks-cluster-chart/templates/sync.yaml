@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: {{ .Values.name }}-flux-system
 spec:
-  interval: 10m0s
+  interval: 3m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -19,7 +19,7 @@ kind: Kustomization
 metadata:
   name: {{ .Values.name }}-infrastructure
 spec:
-  interval: 10m0s
+  interval: 3m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
