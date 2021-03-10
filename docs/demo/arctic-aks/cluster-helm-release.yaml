@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: pacific-aks-helm-release
+  name: arctic-aks-helm-release
   namespace: capi-worker-clusters
 spec:
   chart:
@@ -13,8 +13,8 @@ spec:
         namespace: flux-system
   interval: 10m
   values:
-    name: pacific-aks
-    clusterResourceGroup: pacific-aks-rg
-    controlAgentPoolName: clpacpool
-    workerAgentPoolName: wrpacpool
+    name: arctic-aks
+    clusterResourceGroup: arctic-aks-rg
+    controlAgentPoolName: clarcpool
+    workerAgentPoolName: wrarcpool
 
