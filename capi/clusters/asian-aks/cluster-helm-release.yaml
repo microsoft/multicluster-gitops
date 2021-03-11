@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: asian-aks-helm-release
+  namespace: capi-worker-clusters
+spec:
+  chart:
+    spec:
+      chart: ./capi/mngmt/aks-cluster-chart
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  interval: 10m
+  values:
+    name: asian-aks
+    clusterResourceGroup: asian-aks-rg
+    controlAgentPoolName: claspool
+    workerAgentPoolName: wraspool
+
