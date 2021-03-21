@@ -1,0 +1,26 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-only-ingress-to-prod
+spec:  
+  podSelector:
+    matchLabels:
+      env: prod
+  ingress:
+  - from:
+    - namespaceSelector: {}
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/name: traefik-ingress-ilb
+          app.kubernetes.io/instance: traefik-ingress-ilb
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-egress-from-prod
+spec:
+  podSelector:
+    matchLabels:
+      env: prod
+  policyTypes:
+    - Egress
