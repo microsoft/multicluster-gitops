@@ -2697,6 +2697,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: deny-ingress
+  namespace: flux-system
 spec:
   egress:
   - {}
@@ -2712,6 +2713,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: allow-scraping
+  namespace: flux-system
 spec:
   ingress:
   - from:
@@ -2727,6 +2729,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: allow-webhooks
+  namespace: flux-system
 spec:
   ingress:
   - from:
