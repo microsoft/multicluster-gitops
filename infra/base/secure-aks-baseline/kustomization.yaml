@@ -3,9 +3,7 @@ kind: Kustomization
 resources:
 - aad-pod-identity.yaml
 - akv-secrets-store-csi.yaml
-- azure-identity.yaml
 - container-azm-ms-agentconfig.yaml
 - kured-1.4.0-dockerhub.yaml
 - namespace.yaml
 - network-policy.yaml
-- traefik.yaml
