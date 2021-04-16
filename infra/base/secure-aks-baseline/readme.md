@@ -4,8 +4,6 @@
 - Azure KeyVault Secret Store CSI Provider
 - Azure Monitor Prometheus Scraping
 - Kured
-- Traefik Ingress controller
 - Network policy
 
-***Important***: Update placeholders in azure-identity.yaml and traefik.yaml
 
