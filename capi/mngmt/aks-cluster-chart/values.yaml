@@ -3,7 +3,7 @@ servicesCidrBlock: 10.0.0.0/16
 location: eastus
 clusterResourceGroup: 
 subscriptionId: 0fe1cc35-0cfa-4152-97d7-5dfb45a8d4ba
-k8sVersion: v1.19.6
+k8sVersion: v1.19.9
 networkPlugin: kubenet
 controlAgentPoolName: clagentpool
 controlAgentPoolNodes: 2
