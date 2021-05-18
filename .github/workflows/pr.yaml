@@ -18,14 +18,3 @@ jobs:
           fail-on-error: true
           # See https://github.com/marketplace/actions/get-all-changed-files for more options
           # woke-args: ${{ steps.files.outputs.added_modified }}
-      # - uses: TrueBrain/actions-flake8@master
-      #   name: Linting
-      #   if: "true"
-      #   with:
-      #     path: ./src    
-      # - uses: hadolint/hadolint-action@v1.5.0
-      #   name: Docker Linting
-      #   with:
-      #     dockerfile: ./src/Dockerfile
-      # - name: MD Linting
-      #   uses: actionshub/markdownlint@main     
