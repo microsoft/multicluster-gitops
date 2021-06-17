@@ -25,7 +25,7 @@ flux create source git $TENANT_NAME-manifests \
 
 
 cd $BASE_TENANT_FOLDER 
-kustomize create --autodetect --namespace $NAMESPACE_NAME
+kustomize create --autodetect
 cd -  
 
 # add to each cluster

@@ -12,5 +12,5 @@ spec:
   serviceAccountName: kaizentm
   sourceRef:
     kind: GitRepository
-    name: kaizentm-manifests
+    name: kaizentm-1-0-x-manifests
 
