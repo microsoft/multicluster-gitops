@@ -43,6 +43,7 @@ for app in `find ./tenants/base/$TENANT_NAME -type d -not -path "./tenants/base/
     update_name $APP_FOLDER_RELEASE_FOLDERR 'APP_NAME' $APP_NAME
     update_name $APP_FOLDER_RELEASE_FOLDERR 'TENANT_NAME' $TENANT_NAME
     update_name $APP_FOLDER_RELEASE_FOLDERR 'ENV_NAME' $ENV_NAME
+    update_name $APP_FOLDER_RELEASE_FOLDERR 'GIT_REPOSITORY_NAME' $TENANT_NAME-$RELEASE_NAME-manifests
     cd $APP_FOLDER
     kustomize edit add resource releases/$RELEASE_NAME
     cd -

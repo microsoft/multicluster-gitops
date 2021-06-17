@@ -17,6 +17,7 @@ cp ./utils/templates/tenants/app/base/* $BASE_APP_FOLDER/
 update_name $BASE_APP_FOLDER 'APP_NAME' $APP_NAME
 update_name $BASE_APP_FOLDER 'TENANT_NAME' $TENANT_NAME
 update_name $BASE_APP_FOLDER 'ENV_NAME' $ENV_NAME
+update_name $BASE_APP_FOLDER 'GIT_REPOSITORY_NAME' $TENANT_NAME-manifests
 
 
 # add to each cluster
@@ -29,6 +30,7 @@ for cluster in `find ./clusters -type d -not -path "./clusters/base" -maxdepth 1
     update_name $APP_CLUSTER_FOLDER 'TENANT_NAME' $TENANT_NAME
     update_name $APP_CLUSTER_FOLDER 'CLUSTER_NAME' $CLUSTER_NAME
     update_name $APP_CLUSTER_FOLDER 'ENV_NAME' $ENV_NAME
+    update_name $APP_CLUSTER_FOLDER 'GIT_REPOSITORY_NAME' $TENANT_NAME-manifests
     
     cd ./tenants/$CLUSTER_NAME/$TENANT_NAME 
     rm -f kustomization.yaml
@@ -44,6 +46,7 @@ for cluster in `find ./clusters -type d -not -path "./clusters/base" -maxdepth 1
         update_name $APP_REMOTE_CLUSTER_FOLDER 'CLUSTER_NAME' $CLUSTER_NAME
         update_name $APP_REMOTE_CLUSTER_FOLDER 'ENV_NAME' $ENV_NAME
         update_name $APP_REMOTE_CLUSTER_FOLDER 'REMOTE_CLUSTER_NAME' $REMOTE_CLUSTER_NAME
+        update_name $APP_REMOTE_CLUSTER_FOLDER 'GIT_REPOSITORY_NAME' $TENANT_NAME-manifests
         cd ./tenants/$CLUSTER_NAME/clusters/$REMOTE_CLUSTER_NAME/$TENANT_NAME
         rm -f kustomization.yaml
         kustomize create --autodetect --recursive --resources ../../../../base/$TENANT_NAME  

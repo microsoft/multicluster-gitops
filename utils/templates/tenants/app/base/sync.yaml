@@ -12,5 +12,5 @@ spec:
   serviceAccountName: {TENANT_NAME}
   sourceRef:
     kind: GitRepository
-    name: {TENANT_NAME}-manifests
+    name: {GIT_REPOSITORY_NAME}
 
