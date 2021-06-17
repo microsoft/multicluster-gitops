@@ -7,7 +7,7 @@ metadata:
 spec:
   targetNamespace: dev-1-0-x-kaizentm
   interval: 1m0s
-  path: ./azure-vote
+  path: ./azure-vote/manifest
   prune: false
   serviceAccountName: kaizentm
   sourceRef:
