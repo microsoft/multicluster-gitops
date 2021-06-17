@@ -4,3 +4,4 @@ namespace: dev-kaizentm
 resources:
 - rbac.yaml
 - git-manifests.yaml
+- releases/1-0-x

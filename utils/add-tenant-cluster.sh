@@ -13,7 +13,7 @@ add-tenant-cluster() {
     TENANT_FOLDER=./tenants/$CLUSTER_NAME/$TENANT_NAME
     rm -r -f $TENANT_FOLDER 
     mkdir -p $TENANT_FOLDER 
-    for app in `find ./tenants/base/$TENANT_NAME -type d -maxdepth 1 -mindepth 1`; do \
+    for app in `find ./tenants/base/$TENANT_NAME -type d -not -path "./tenants/base/$TENANT_NAME/releases" -maxdepth 1 -mindepth 1`; do \
         APP_NAME=$(basename $app)
         APP_FOLDER=$TENANT_FOLDER/$APP_NAME
         mkdir -p $APP_FOLDER
