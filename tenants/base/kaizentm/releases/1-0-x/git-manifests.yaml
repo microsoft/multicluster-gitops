@@ -8,5 +8,5 @@ spec:
   interval: 1m0s
   ref:
     branch: Dev/1.0.x
-  url: https://github.com/kaizentm/multicluster-gitops
+  url: https://github.com/kaizentm/gitops-manifests
 
