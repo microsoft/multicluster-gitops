@@ -6,6 +6,6 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: stage-flux-system
+    branch: stage
   url: https://github.com/kaizentm/multicluster-gitops
 ---
