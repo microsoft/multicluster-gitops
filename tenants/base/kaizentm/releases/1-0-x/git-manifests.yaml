@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: kaizentm-1-0-x-manifests
+  namespace: stage-1-0-x-kaizentm
+spec:
+  interval: 1m0s
+  ref:
+    branch: release/1-0-x/stage
+  url: https://github.com/kaizentm/gitops-manifests
+
