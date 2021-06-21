@@ -1,11 +1,11 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: dev-flux-system
-  namespace: dev-flux-system
+  name: stage-flux-system
+  namespace: stage-flux-system
 spec:
   interval: 1m0s
   ref:
-    branch: dev
+    branch: stage-flux-system
   url: https://github.com/kaizentm/multicluster-gitops
 ---

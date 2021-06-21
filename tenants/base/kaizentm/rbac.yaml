@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: kaizentm
-  name: dev-kaizentm
+  name: stage-kaizentm
 
 ---
 apiVersion: v1
@@ -13,9 +13,7 @@ metadata:
   labels:
     toolkit.fluxcd.io/tenant: kaizentm
   name: kaizentm
-  namespace: dev-kaizentm
-imagePullSecrets:
-- name: acr-secret
+  namespace: stage-kaizentm
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -24,7 +22,7 @@ metadata:
   labels:
     toolkit.fluxcd.io/tenant: kaizentm
   name: kaizentm-reconciler
-  namespace: dev-kaizentm
+  namespace: stage-kaizentm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -32,8 +30,8 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
-  name: gotk:dev-kaizentm:reconciler
+  name: gotk:stage-kaizentm:reconciler
 - kind: ServiceAccount
   name: kaizentm
-  namespace: dev-kaizentm
+  namespace: stage-kaizentm
 

@@ -2,12 +2,12 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
   name: infrastructure
-  namespace: dev-flux-system
+  namespace: stage-flux-system
 spec:
   interval: 10m0s
   sourceRef:
     kind: GitRepository
-    name: dev-flux-system
+    name: stage-flux-system
   path: ./infra/pacific-aks
   prune: true
   validation: client
