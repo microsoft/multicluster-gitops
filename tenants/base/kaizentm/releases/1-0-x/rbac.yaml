@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: kaizentm
+  name: stage-1-0-x-kaizentm
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: kaizentm
+  name: kaizentm
+  namespace: stage-1-0-x-kaizentm
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: kaizentm
+  name: kaizentm-reconciler
+  namespace: stage-1-0-x-kaizentm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gotk:stage-1-0-x-kaizentm:reconciler
+- kind: ServiceAccount
+  name: kaizentm
+  namespace: stage-1-0-x-kaizentm
+
