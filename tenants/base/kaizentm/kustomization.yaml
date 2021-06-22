@@ -4,3 +4,4 @@ resources:
 - rbac.yaml
 - git-manifests.yaml
 - releases/1-0-x
+- releases/efs/tags/v1-0-x
