@@ -6,6 +6,7 @@ metadata:
   namespace: dev-arcpg
 spec:
   interval: 1m0s
+  gitImplementation: libgit2
   ref:
     branch: master
   url: https://dev.azure.com/iefedore/gitops-tutorial/_git/arc-cicd-demo-gitops
