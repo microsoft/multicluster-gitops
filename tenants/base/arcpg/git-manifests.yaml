@@ -8,5 +8,5 @@ spec:
   interval: 1m0s
   ref:
     branch: master
-  url: https://iefedore@dev.azure.com/iefedore/gitops-tutorial/_git/arc-cicd-demo-gitops
+  url: https://dev.azure.com/iefedore/gitops-tutorial/_git/arc-cicd-demo-gitops
 
