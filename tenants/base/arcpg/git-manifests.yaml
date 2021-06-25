@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: arcpg-manifests
+  namespace: dev-arcpg
+spec:
+  interval: 1m0s
+  ref:
+    branch: master
+  url: https://iefedore@dev.azure.com/iefedore/gitops-tutorial/_git/arc-cicd-demo-gitops
+
