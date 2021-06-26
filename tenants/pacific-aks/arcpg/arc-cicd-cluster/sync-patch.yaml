@@ -4,4 +4,4 @@ metadata:
   name: arc-cicd-cluster
   namespace: dev-arcpg
 spec:
-  path: ./arc-cicd-cluster
+  path: ./azure-vote-manifests/arc-cicd-cluster/manifests/dev-arcpg
