@@ -21,4 +21,5 @@ spec:
     networkPolicy: azure
     virtualNetwork:
       name: secure-vnet
+    infraPath: ./infra/secure-aks-baseline  
 
