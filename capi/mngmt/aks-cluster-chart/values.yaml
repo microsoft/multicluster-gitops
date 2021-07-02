@@ -5,6 +5,7 @@ clusterResourceGroup:
 subscriptionId: 0fe1cc35-0cfa-4152-97d7-5dfb45a8d4ba
 k8sVersion: v1.20.7
 networkPlugin: kubenet
+networkPolicy: calico
 controlAgentPoolName: clagentpool
 controlAgentPoolNodes: 2
 controlAgentPoolNodeSize: Standard_D8s_v3
