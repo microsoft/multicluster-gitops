@@ -33,8 +33,8 @@ spec:
   networkPlugin: {{ .Values.networkPlugin }}
   networkPolicy: {{ .Values.networkPolicy }}
   virtualNetwork:
-      name: {{ .Values.virtualNetwork.name }}
-      cidrBlock: 10.0.0.0/8
+    name: {{ .Values.virtualNetwork.name }}
+    cidrBlock: 10.0.0.0/8
 
 ---
 apiVersion: exp.infrastructure.cluster.x-k8s.io/v1alpha3
