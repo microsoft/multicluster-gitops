@@ -25,7 +25,6 @@ spec:
   region: {{ .Values.location }}
   sshKeyName: {{ .Values.sshKeyName }}
   version: {{ .Values.k8sVersion }} 
-  additionalTags: {{ .Values.additionalTags }}
   eksClusterName: {{ .Values.name }} 
 ---
 apiVersion: cluster.x-k8s.io/v1alpha3

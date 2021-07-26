@@ -2,4 +2,4 @@ apiVersion: v2
 name: aws-cluster
 description: A Helm chart for AWS Cluster 
 
-version: 0.0.2
+version: 0.0.3
