@@ -1,0 +1,70 @@
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Cluster
+metadata:
+  name: {{ .Values.name }}
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks:
+      - {{ .Values.servicesCidrBlock }}
+    serviceDomain: cluster.local  
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
+    kind: AWSManagedControlPlane
+    name: {{ .Values.name }}
+  infrastructureRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
+    kind: AWSManagedControlPlane
+    name: {{ .Values.name }}
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
+kind: AWSManagedControlPlane
+metadata:
+  name: {{ .Values.name }}
+spec:
+  region: {{ .Values.location }}
+  sshKeyName: {{ .Values.sshKeyName }}
+  version: {{ .Values.k8sVersion }} 
+  additionalTags: {{ .Values.additionalTags }}
+  eKSClusterName: {{ .Values.name }} 
+---
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: MachineDeployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  clusterName: {{ .Values.name }}
+  replicas: {{ .Values.workerAgentPoolNodes }}
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+          kind: EKSConfigTemplate
+          name: {{ .Values.name }}
+      clusterName: {{ .Values.name }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+        kind: AWSMachineTemplate
+        name: {{ .Values.name }}
+      version: {{ .Values.k8sVersion }}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
+kind: AWSMachineTemplate
+metadata:
+  name: {{ .Values.name }}
+spec:
+  template:
+    spec:
+      iamInstanceProfile: nodes.cluster-api-provider-aws.sigs.k8s.io
+      instanceType: {{ .Values.workerAgentPoolNodeSize }}
+      sshKeyName: {{ .Values.sshKeyName }}
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+kind: EKSConfigTemplate
+metadata:
+  name: {{ .Values.name }}
+spec:
+  template: {}
