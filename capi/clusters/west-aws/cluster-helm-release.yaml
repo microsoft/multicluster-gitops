@@ -17,4 +17,4 @@ spec:
     location: us-west-2    
     k8sVersion: v1.21.2
     workerAgentPoolNodes: 1
-    workerAgentPoolNodeSize: t2.mediu
+    workerAgentPoolNodeSize: t2.medium
