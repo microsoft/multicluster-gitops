@@ -1,0 +1,10 @@
+name: 
+servicesCidrBlock: 192.168.0.0/16
+location: 
+sshKeyName: default
+k8sVersion: v1.21.2
+additionalTags: voyager
+workerAgentPoolNodes: 1
+workerAgentPoolNodeSize: t2.medium
+infraPath: ./infra/base
+
