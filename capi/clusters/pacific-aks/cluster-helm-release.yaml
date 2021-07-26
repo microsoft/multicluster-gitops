@@ -17,4 +17,7 @@ spec:
     clusterResourceGroup: pacific-aks-rg
     controlAgentPoolName: clpacpool
     workerAgentPoolName: wrpacpool
+    virtualNetwork:
+      name: pacific-vnet
+
 

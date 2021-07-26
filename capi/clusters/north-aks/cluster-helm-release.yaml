@@ -17,4 +17,7 @@ spec:
     clusterResourceGroup: north-aks-rg
     controlAgentPoolName: clnrtpool
     workerAgentPoolName: wrnrtpool
+    virtualNetwork:
+      name: north-vnet
+
 
