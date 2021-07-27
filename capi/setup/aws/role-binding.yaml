@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: capa-eks-control-plane-manager-rolebinding-role
+  labels:
+    cluster.x-k8s.io/provider: infrastructure-aws
+    clusterctl.cluster.x-k8s.io: ''
+subjects:
+  - kind: ServiceAccount
+    name: capa-eks-control-plane-controller-manager
+    namespace: capa-eks-control-plane-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: capa-system-capa-manager-role
