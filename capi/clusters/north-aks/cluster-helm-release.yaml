@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: ./capi/mngmt/aks-cluster-chart
+      chart: ./capi/charts/azure/aks-cluster-chart
       sourceRef:
         kind: GitRepository
         name: flux-system
