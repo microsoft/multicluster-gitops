@@ -1,5 +1,8 @@
  #!/bin/bash
 
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # Usage:
 # 
 # remove-cluster.sh CLUSTER_NAME

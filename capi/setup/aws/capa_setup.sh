@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # Install cluster ctl 
 # https://cluster-api.sigs.k8s.io/user/quick-start.html#install-clusterctl
 
