@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 ACR_NAME=gitopsflowacr.azurecr.io
 ACR_UNAME=$(az acr credential show -n $ACR_NAME --query="username" -o tsv)
 ACR_PASSWD=$(az acr credential show -n $ACR_NAME --query="passwords[0].value" -o tsv)
